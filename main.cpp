@@ -5,7 +5,7 @@
 #include <fstream>
 #include "model.h"
 #include "datamining.h"
-#include "exerciseviewdelegate.h"
+#include "exerciseviewcontroller.h"
 #include "baseexerciseview.h"
 #include "datamining.h"
 
@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+    ExerciseViewController* viewController= new ExerciseViewController(nullptr);
 
     //Model* model = new Model();
     //DataMining* dataMining = new DataMining(model->getData());

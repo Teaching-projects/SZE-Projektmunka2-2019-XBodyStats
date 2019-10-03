@@ -7,13 +7,13 @@ class BaseExerciseView;
 class ExerciseViewDelegate
 {
 public:
-    ExerciseViewDelegate();
-    virtual ~ExerciseViewDelegate();
+    ExerciseViewDelegate(){}
+    virtual ~ExerciseViewDelegate(){}
 
 protected:
 
     virtual void muscleButtonOnPress(int buttonId) = 0;
-    virtual void mainButtinOnPress(bool direction) = 0;
+    virtual void mainButtonOnPress(bool direction) = 0;
     virtual void sliderChanged(int value) = 0;
     virtual void selectButtonPressed() = 0;
     virtual void APSButtonPressed() = 0;
