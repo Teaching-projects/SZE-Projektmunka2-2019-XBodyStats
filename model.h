@@ -6,14 +6,14 @@
 class Model
 {
 private:
+protected:
     ModelData* data;
 public:
     Model();
+    ~Model();
 
     //TODO implement database
-    ModelData* getData() const;
-
-    ~Model();
+    virtual ModelData* getData() const;
 };
 
 #endif // MODEL_H

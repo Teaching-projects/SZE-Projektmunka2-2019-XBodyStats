@@ -10,9 +10,9 @@ public:
 
 protected:
 
-    virtual void muscleButtonOnPress(int buttonId) =  0;
-    virtual void mainButtinOnPress(bool direction) = 0;
-    virtual void sliderChanged(int value) = 0;
+    virtual void muscleButtonOnPress(int buttonId);
+    virtual void mainButtinOnPress(bool direction);
+    virtual void sliderChanged(int value);
 
     /* Will be added if needed
     virtual void optionsPressed();
