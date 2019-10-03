@@ -10,10 +10,10 @@ private:
     //ExerciseViewDelegate* delegate;
 
 public:
-    BaseExerciseView();
+    BaseExerciseView(){}
 
     virtual void display(ViewContent& viewContent) = 0;
-    virtual ~BaseExerciseView();
+    virtual ~BaseExerciseView(){}
 };
 
 #endif // BASEEXERCISEVIEW_H
