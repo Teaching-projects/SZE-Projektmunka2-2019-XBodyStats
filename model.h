@@ -9,11 +9,11 @@ private:
 protected:
     ModelData* data;
 public:
-    Model();
-    ~Model();
+    Model(){}
+    virtual ~Model(){delete data;}
 
     //TODO implement database
-    virtual ModelData* getData() const;
+    virtual ModelData* getData() const = 0;
 };
 
 #endif // MODEL_H

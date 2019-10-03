@@ -6,19 +6,14 @@
 //AbstractClass implemented by ExerciseView
 class BaseExerciseView
 {
-public:
-    BaseExerciseView(){
-        delegate->mainButtinOnPress();
-        delegate->muscleButtonOnPress();
-        delegate->sliderChanged(8);
-    }
-
-    virtual void display(ViewContent& viewContent);
-    virtual ~BaseExerciseView();
-
-
 private:
-    ExerciseViewDelegate* delegate;
+    //ExerciseViewDelegate* delegate;
+
+public:
+    BaseExerciseView();
+
+    virtual void display(ViewContent& viewContent) = 0;
+    virtual ~BaseExerciseView();
 };
 
 #endif // BASEEXERCISEVIEW_H

@@ -1,8 +1,14 @@
+#include "mainwindow.h"
+#include <QApplication>
 #include <iostream>
 #include <string>
 #include <fstream>
 #include "model.h"
 #include "datamining.h"
+#include "exerciseviewdelegate.h"
+#include "baseexerciseview.h"
+#include "datamining.h"
+
 using namespace std;
 
 void printResult(string result, bool toFile){
@@ -22,17 +28,21 @@ void closing(Model* model, DataMining* dataMining){
     delete dataMining;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-    Model* model = new Model();
-    DataMining* dataMining = new DataMining(model->getData());
+    //Model* model = new Model();
+    //DataMining* dataMining = new DataMining(model->getData());
 
     //TODO Create ExerciseViewController -> create ExerciseView
 
-    dataMining->analyzeData();
-    printResult(*dataMining->getResult(), false);
+    //dataMining->analyzeData();
+    //printResult(*dataMining->getResult(), false);
 
-    closing(model, dataMining);
-    return 0;
+    //closing(model, dataMining);
+
+    return a.exec();
 }

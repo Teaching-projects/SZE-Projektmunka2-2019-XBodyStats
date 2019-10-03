@@ -1,19 +1,7 @@
 #ifndef CONTRACTS_H
 #define CONTRACTS_H
-
+#include <qstring.h>
 //TODO implement these
-
-// View will be displayed directly by View
-struct ViewContent  {
-   MuscleButtonProperties *buttons;
-   bool selectButtonPressed;
-   bool ASPButton;
-   //int slideValue; only if needed
-   MuscleButtonProperties *labels;
-   QString clock;
-   BurstTimeIndicator timeIndicator;
-   MasterButton masterButton;
-};
 
 struct MuscleButtonProperties{
     bool isPressed;
@@ -32,6 +20,18 @@ struct MasterButton{
 struct BurstTimeIndicator{
     QString time;
     int color;
+};
+
+// View will be displayed directly by View
+struct ViewContent  {
+   MuscleButtonProperties *buttons;
+   bool selectButtonPressed;
+   bool ASPButton;
+   //int slideValue; only if needed
+   MuscleButtonProperties *labels;
+   QString clock;
+   BurstTimeIndicator timeIndicator;
+   MasterButton masterButton;
 };
 
 // Will be used in DataMining constructor acquired from Model

@@ -1,5 +1,7 @@
 #ifndef EXERCISEVIEWDELEGATE_H
 #define EXERCISEVIEWDELEGATE_H
+#include "baseexerciseview.h"
+class BaseExerciseView;
 
 //Delegate class inherited by ExerciseViewController
 class ExerciseViewDelegate
@@ -10,12 +12,16 @@ public:
 
 protected:
 
-    virtual void muscleButtonOnPress(int buttonId);
-    virtual void mainButtinOnPress(bool direction);
-    virtual void sliderChanged(int value);
+    virtual void muscleButtonOnPress(int buttonId) = 0;
+    virtual void mainButtinOnPress(bool direction) = 0;
+    virtual void sliderChanged(int value) = 0;
+    virtual void selectButtonPressed() = 0;
+    virtual void APSButtonPressed() = 0;
+    virtual void masterButtonPressed() = 0;
+    virtual bool canIntensityChange() = 0;
 
     /* Will be added if needed
-    virtual void optionsPressed();
+    virtual void optionsPressed() =0;
     */
 };
 
