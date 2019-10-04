@@ -1,0 +1,4 @@
+#ifndef BUTTONMODEL_H
+#define BUTTONMODEL_H
+
+#endif // BUTTONMODEL_H

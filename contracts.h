@@ -6,8 +6,6 @@
 struct MuscleButtonProperties{
     bool isPressed;
     int buttonId;
-};
-struct MuscleLabelContent{
     QString percent;
 };
 
@@ -27,11 +25,10 @@ struct ViewContent  {
    MuscleButtonProperties *buttons;
    bool selectButtonPressed;
    bool ASPButton;
-   //int slideValue; only if needed
-   MuscleButtonProperties *labels;
    QString clock;
    BurstTimeIndicator timeIndicator;
    MasterButton masterButton;
+   //int slideValue; only if needed
 };
 
 // Will be used in DataMining constructor acquired from Model
