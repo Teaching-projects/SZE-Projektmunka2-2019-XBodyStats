@@ -1,39 +1,37 @@
 #ifndef EXERCISEVIEWCONTROLLER_H
 #define EXERCISEVIEWCONTROLLER_H
+
+#define ON true
+#define OFF false
+
 #include "exerciseviewdelegate.h"
 #include "baseexerciseview.h"
 #include "contracts.h"
+#include "buttonmodel.h"
+#include <qstring.h>
+#include <vector>
 #include <list>
 #include <time.h>
+#include <iostream>
 
 enum Burst{Red,Green,Yellow};
 
-struct Intensities{
-    int quadriceps;
-    int hamstrings;
-    int glutes;
-    int abs;
-    int lowerBack;
-    int back;
-    int trapezius;
-    int pectoral;
-    int arms;
-    int shoulders;
-    int calves;
+
+
+struct CurrentProperties{
+    ButtonStore* intensityButtons;
+    bool selectButton;
+    bool ASPButton;
+    bool masterButton;
+    int masterIntensity;
+    BurstTimeIndicator burstTime;
+    //TODO currentTime
+    //TODO timer
+    //TODO timer color
 };
 
 struct Workout{
-    std::list<std::pair<int,Intensities*>> intensitiesByTime;
-};
-
-struct CurrentProperties{
-    Intensities intensity;
-    bool* buttons;
-    bool selectButton;
-    bool ASPButton;
-    bool master;
-    BurstTimeIndicator burstTime;
-    //TODO currentTime
+    std::list<std::pair<int,CurrentProperties*>> intensitiesByTime;
 };
 
 class ExerciseViewController: public ExerciseViewDelegate
@@ -52,6 +50,8 @@ public:
     void APSButtonPressed() override;
     void masterButtonPressed() override;
     bool canIntensityChange() override;
+
+    void printCurrentProperties() const;
 
 };
 
