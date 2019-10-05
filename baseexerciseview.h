@@ -12,7 +12,7 @@ private:
 public:
     BaseExerciseView(){}
 
-    virtual void display(ViewContent& viewContent) = 0;
+    virtual void display(ViewContent* viewContent) = 0;
     virtual ~BaseExerciseView(){}
 };
 
