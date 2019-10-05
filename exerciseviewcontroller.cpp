@@ -25,6 +25,7 @@ void ExerciseViewController::muscleButtonOnPress(int buttonId)
     if(this->currentViewProperties->masterButton == ON){
         this->currentViewProperties->masterButton = OFF;
     }
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 void ExerciseViewController::mainButtonOnPress(bool direction)
@@ -38,27 +39,32 @@ void ExerciseViewController::mainButtonOnPress(bool direction)
     }else{
         this->currentViewProperties->intensityButtons->updateIntensities(direction);
     }
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 void ExerciseViewController::sliderChanged(int value)
 {
     this->currentViewProperties->intensityButtons->setButtonValues(value);
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 void ExerciseViewController::selectButtonPressed()
 {
     this->currentViewProperties->selectButton = !this->currentViewProperties->selectButton;
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 void ExerciseViewController::APSButtonPressed()
 {
     this->currentViewProperties->ASPButton = !this->currentViewProperties->ASPButton;
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 void ExerciseViewController::masterButtonPressed()
 {
     this->currentViewProperties->masterButton = ON;
     this->currentViewProperties->intensityButtons->deselectAll();
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 bool ExerciseViewController::canIntensityChange()
@@ -72,17 +78,17 @@ bool ExerciseViewController::canIntensityChange()
     }
 }
 
-ViewContent ExerciseViewController::viewContentFromCurrentData() const
+ViewContent* ExerciseViewController::viewContentFromCurrentData() const
 {
-    ViewContent toReturn;
-    toReturn.ASPButton = this->currentViewProperties->ASPButton;
-    toReturn.masterButton.isPressed = this->currentViewProperties->masterButton;
-    toReturn.masterButton.percent = QString(this->currentViewProperties->masterIntensity);
-    toReturn.selectButtonPressed = this->currentViewProperties->selectButton;
-    toReturn.clock = QString("tmp");
-    toReturn.timeIndicator.color = Green;
-    toReturn.timeIndicator.time = QString("tmp");
-    toReturn.buttons = this->currentViewProperties->intensityButtons->getMuscleButtonProperties();
+    ViewContent* toReturn = new ViewContent;
+    toReturn->ASPButton = this->currentViewProperties->ASPButton;
+    toReturn->masterButton.isPressed = this->currentViewProperties->masterButton;
+    toReturn->masterButton.percent = QString(this->currentViewProperties->masterIntensity);
+    toReturn->selectButtonPressed = this->currentViewProperties->selectButton;
+    toReturn->clock = QString("tmp");
+    toReturn->timeIndicator.color = Green;
+    toReturn->timeIndicator.time = QString("tmp");
+    toReturn->buttons = this->currentViewProperties->intensityButtons->getMuscleButtonProperties();
 
     return toReturn;
 }

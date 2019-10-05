@@ -37,7 +37,7 @@ struct Workout{
 class ExerciseViewController: public ExerciseViewDelegate
 {
 private:
-    ViewContent viewContentFromCurrentData() const;
+    ViewContent* viewContentFromCurrentData() const;
     BaseExerciseView* view;
     CurrentProperties* currentViewProperties;
 public:
@@ -52,7 +52,7 @@ public:
     bool canIntensityChange() override;
 
     void printCurrentProperties() const;
-
+    //TODO implement time management
 };
 
 #endif // EXERCISEVIEWCONTROLLER_H
