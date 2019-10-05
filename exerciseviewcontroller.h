@@ -12,9 +12,9 @@
 #include <vector>
 #include <list>
 #include <time.h>
+#include <thread>
+#include <chrono>
 #include <iostream>
-
-enum Burst{Red,Green,Yellow};
 
 
 
@@ -24,10 +24,10 @@ struct CurrentProperties{
     bool ASPButton;
     bool masterButton;
     int masterIntensity;
-    BurstTimeIndicator burstTime;
-    //TODO currentTime
-    //TODO timer
-    //TODO timer color
+    int burstTime;
+    Burst burstColour;
+    int currentTime;
+    StartButtonState startButtonState;
 };
 
 struct Workout{
@@ -40,6 +40,8 @@ private:
     ViewContent* viewContentFromCurrentData() const;
     BaseExerciseView* view;
     CurrentProperties* currentViewProperties;
+    void manageTime();
+    Burst changeColour();
 public:
     ExerciseViewController(BaseExerciseView* view);
     ~ExerciseViewController();
@@ -50,6 +52,8 @@ public:
     void APSButtonPressed() override;
     void masterButtonPressed() override;
     bool canIntensityChange() override;
+    void startButtonPressed();
+
 
     void printCurrentProperties() const;
     //TODO implement time management
