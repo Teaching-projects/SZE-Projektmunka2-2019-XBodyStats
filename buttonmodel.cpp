@@ -53,7 +53,7 @@ void ButtonStore::buttonSelected(int id, bool multiple)
 
     for(auto& button: buttons){
         if(button->id == id){
-            button->isPressed = true;
+            button->isPressed = !button->isPressed;
             return;
         }
     }
@@ -82,7 +82,7 @@ MuscleButtonProperties* ButtonStore::getMuscleButtonProperties()
     for(int i=0;i<11;i++){
         toReturn[i].buttonId = buttons[i]-> id;
         toReturn[i].isPressed = buttons[i]-> isPressed;
-        toReturn[i].percent = QString(buttons[i]->intensity);
+        toReturn[i].percent = QString::number(buttons[i]->intensity);
     }
 
     return toReturn;
