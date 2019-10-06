@@ -15,7 +15,7 @@ struct ButtonModel{
 
 class ButtonStore{
 private:
-
+    int selectedButtonCount;
 public:
     std::vector<ButtonModel*> buttons;
 

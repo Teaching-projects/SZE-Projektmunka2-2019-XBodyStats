@@ -9,6 +9,7 @@ ButtonStore::ButtonStore()
         model->isPressed = false;
         buttons.push_back(model);
     }
+    selectedButtonCount = 0;
 }
 
 ButtonStore::~ButtonStore()
@@ -33,16 +34,16 @@ void ButtonStore::updateIntensities(bool direction)
 
 void ButtonStore::updateIntensity(int id, bool direction)
 {
-     for(auto& button: buttons){
-         if(button->id == id){
-             if(direction == PLUS){
-                 button->intensity++;
-             }else{
-                 button->intensity--;
-             }
-             return;
-         }
-     }
+    for(auto& button: buttons){
+        if(button->id == id){
+            if(direction == PLUS){
+                button->intensity++;
+            }else{
+                button->intensity--;
+            }
+            return;
+        }
+    }
 }
 
 void ButtonStore::buttonSelected(int id, bool multiple)
@@ -53,8 +54,28 @@ void ButtonStore::buttonSelected(int id, bool multiple)
 
     for(auto& button: buttons){
         if(button->id == id){
-            button->isPressed = !button->isPressed;
-            return;
+            bool state = !button->isPressed;
+
+            if(state == true){
+                selectedButtonCount++;
+                button->isPressed = state;
+            }else{
+                if(selectedButtonCount > 1){
+                    button->isPressed = state;
+                    selectedButtonCount--;
+                }
+            }
+//            button->isPressed = !button->isPressed;
+//            if(button->isPressed){
+//                selectedButtonCount++;
+//            }else{
+//                if(selectedButtonCount == 1){
+//                    button->isPressed = !button->isPressed;
+//                }else{
+//                    selectedButtonCount--;
+//                }
+//            }
+//            return;
         }
     }
 }
@@ -70,7 +91,7 @@ void ButtonStore::setButtonValues(int value)
 {
     for(auto& button: buttons){
         if(button->isPressed == true){
-           button->intensity = value;
+            button->intensity = value;
         }
     }
 }
