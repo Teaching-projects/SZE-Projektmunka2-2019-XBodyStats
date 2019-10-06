@@ -9,8 +9,8 @@ private:
 protected:
     ModelData* data;
 public:
-    Model(){}
-    virtual ~Model(){delete data;}
+    Model();
+    virtual ~Model();
 
     //TODO implement database
     virtual ModelData* getData() const = 0;
