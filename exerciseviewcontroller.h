@@ -52,7 +52,7 @@ public:
     void APSButtonPressed() override;
     void masterButtonPressed() override;
     bool canIntensityChange() override;
-    void startButtonPressed();
+    void startButtonPressed() override;
 
 
     void printCurrentProperties() const;

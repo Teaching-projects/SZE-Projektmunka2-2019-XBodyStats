@@ -10,8 +10,6 @@ public:
     ExerciseViewDelegate(){}
     virtual ~ExerciseViewDelegate(){}
 
-protected:
-
     virtual void muscleButtonOnPress(int buttonId) = 0;
     virtual void mainButtonOnPress(bool direction) = 0;
     virtual void sliderChanged(int value) = 0;
@@ -19,6 +17,7 @@ protected:
     virtual void APSButtonPressed() = 0;
     virtual void masterButtonPressed() = 0;
     virtual bool canIntensityChange() = 0;
+    virtual void startButtonPressed() = 0;
 
     /* Will be added if needed
     virtual void optionsPressed() =0;
