@@ -98,9 +98,9 @@ void ButtonStore::setButtonValues(int value)
 
 MuscleButtonProperties* ButtonStore::getMuscleButtonProperties()
 {
-    MuscleButtonProperties* toReturn = new MuscleButtonProperties[11];
+    MuscleButtonProperties* toReturn = new MuscleButtonProperties[12];
 
-    for(int i=0;i<11;i++){
+    for(int i=0;i<12;i++){
         toReturn[i].buttonId = buttons[i]-> id;
         toReturn[i].isPressed = buttons[i]-> isPressed;
         toReturn[i].percent = QString::number(buttons[i]->intensity);
