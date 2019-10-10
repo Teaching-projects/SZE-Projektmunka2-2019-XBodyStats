@@ -13,6 +13,7 @@ ExerciseViewController::ExerciseViewController(BaseExerciseView* view)
     this->currentViewProperties->currentTime = 1200;
     this->currentViewProperties->burstTime = 4;
     this->currentViewProperties->burstColour = Green;
+    this->currentViewProperties->masterIntensity = 0;
 }
 
 ExerciseViewController::~ExerciseViewController()
@@ -46,8 +47,11 @@ void ExerciseViewController::mainButtonOnPress(bool direction)
 }
 
 void ExerciseViewController::sliderChanged(int value)
-{
-    this->currentViewProperties->intensityButtons->setButtonValues(value);
+{   if(this->currentViewProperties->masterButton){
+        this->currentViewProperties->masterIntensity = value;
+    }else{
+        this->currentViewProperties->intensityButtons->setButtonValues(value);
+    }
     this->view->display(this->viewContentFromCurrentData());
 }
 
@@ -86,7 +90,7 @@ ViewContent* ExerciseViewController::viewContentFromCurrentData() const
     ViewContent* toReturn = new ViewContent;
     toReturn->ASPButton = this->currentViewProperties->ASPButton;
     toReturn->masterButton.isPressed = this->currentViewProperties->masterButton;
-    toReturn->masterButton.percent = QString(this->currentViewProperties->masterIntensity);
+    toReturn->masterButton.percent = QString::number(this->currentViewProperties->masterIntensity) + QString(" %");
     toReturn->selectButtonPressed = this->currentViewProperties->selectButton;
     toReturn->clock = QString::number(this->currentViewProperties->currentTime);
     toReturn->timeIndicator.color = this->currentViewProperties->burstColour;
