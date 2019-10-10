@@ -14,6 +14,8 @@ ExerciseViewController::ExerciseViewController(BaseExerciseView* view)
     this->currentViewProperties->burstTime = 4;
     this->currentViewProperties->burstColour = Green;
     this->currentViewProperties->masterIntensity = 0;
+    this->currentViewProperties->ASPButton = ON;
+    this->view->display(this->viewContentFromCurrentData());
 }
 
 ExerciseViewController::~ExerciseViewController()
@@ -134,6 +136,7 @@ void ExerciseViewController::manageTime(){
 
 void ExerciseViewController::startButtonPressed()
 {
+    this->currentViewProperties->ASPButton = OFF;
     std::thread(&ExerciseViewController::manageTime, this).detach();
 }
 
