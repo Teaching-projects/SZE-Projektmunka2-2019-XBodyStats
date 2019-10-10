@@ -2,7 +2,7 @@
 
 ButtonStore::ButtonStore()
 {
-    for(int i = 0;i< 11;i++){
+    for(int i = 0;i < 12;i++){
         ButtonModel* model = new ButtonModel;
         model->id = i;
         model->intensity = 0;
