@@ -47,7 +47,7 @@ MainWindow::~MainWindow()
 void MainWindow::display(ViewContent *viewContent)
 {
     for(unsigned int i=0;i<11;i++){
-        labels[i]->setText(viewContent-> buttons->percent);
+        labels[i]->setText(viewContent-> buttons[i].percent);
         ui->kisido->setText(viewContent->timeIndicator.time);
         ui->nagyido->setText(viewContent->clock);
     }
