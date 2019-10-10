@@ -14,7 +14,7 @@ ButtonStore::ButtonStore()
 
 ButtonStore::~ButtonStore()
 {
-    for(int i=0;i< 11;i++){
+    for(unsigned int i=0;i< 11;i++){
         delete buttons[i];
     }
 }
@@ -100,10 +100,10 @@ MuscleButtonProperties* ButtonStore::getMuscleButtonProperties()
 {
     MuscleButtonProperties* toReturn = new MuscleButtonProperties[12];
 
-    for(int i=0;i<12;i++){
+    for(unsigned int i=0;i<12;i++){
         toReturn[i].buttonId = buttons[i]-> id;
         toReturn[i].isPressed = buttons[i]-> isPressed;
-        toReturn[i].percent = QString::number(buttons[i]->intensity);
+        toReturn[i].percent = QString::number(buttons[i]->intensity) + QString(" %");
     }
 
     return toReturn;
