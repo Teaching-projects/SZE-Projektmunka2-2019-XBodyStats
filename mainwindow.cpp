@@ -44,10 +44,15 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::display(ViewContent *v)
+void MainWindow::display(ViewContent *viewContent)
 {
-
+    for(unsigned int i=0;i<11;i++){
+        labels[i]->setText(viewContent-> buttons->percent);
+        ui->kisido->setText(viewContent->timeIndicator.time);
+        ui->nagyido->setText(viewContent->clock);
+    }
 }
+
 int MainWindow::getId(QObject *object) const{
     for(unsigned int i = 0; i < buttons.size(); i++){
         if(buttons[i] == object){

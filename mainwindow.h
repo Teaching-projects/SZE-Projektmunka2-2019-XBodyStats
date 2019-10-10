@@ -22,7 +22,7 @@ public:
     ~MainWindow();
     ExerciseViewDelegate* delegate;
 
-    void display(ViewContent* v);
+    void display(ViewContent* viewContent);
 
 private slots:
 
