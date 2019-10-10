@@ -31,10 +31,11 @@ void closing(Model* model, DataMining* dataMining){
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    MainWindow window;
+    window.show();
 
-    ExerciseViewController* viewController= new ExerciseViewController(nullptr);
+    ExerciseViewController* viewController= new ExerciseViewController(&window);
+    window.delegate = viewController;
 
     //Model* model = new Model();
     //DataMining* dataMining = new DataMining(model->getData());
