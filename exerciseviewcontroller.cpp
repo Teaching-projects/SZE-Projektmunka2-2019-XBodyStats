@@ -94,13 +94,35 @@ ViewContent* ExerciseViewController::viewContentFromCurrentData() const
     toReturn->masterButton.isPressed = this->currentViewProperties->masterButton;
     toReturn->masterButton.percent = QString::number(this->currentViewProperties->masterIntensity) + QString(" %");
     toReturn->selectButtonPressed = this->currentViewProperties->selectButton;
-    toReturn->clock = QString::number(this->currentViewProperties->currentTime);
+    toReturn->clock = this->getFormattedCurrentTime();
     toReturn->timeIndicator.color = this->currentViewProperties->burstColour;
     toReturn->timeIndicator.time = QString::number(this->currentViewProperties->burstTime);
     toReturn->buttons = this->currentViewProperties->intensityButtons->getMuscleButtonProperties();
     toReturn->startButtonState = this->currentViewProperties->startButtonState;
+    toReturn->sliderValue = this->currentViewProperties->intensityButtons->getSliderValue();
 
     return toReturn;
+}
+
+QString ExerciseViewController::getFormattedCurrentTime() const
+{
+    std::string formattedTime = "";
+
+    formattedTime += std::to_string(this->currentViewProperties->currentTime / 60);
+    formattedTime += ":";
+    std::string seconds = std::to_string(this->currentViewProperties->currentTime % 60);
+
+    if (seconds.size() == 1){
+        if(seconds[0] == '0'){
+            seconds += "0";
+        }else{
+            seconds = "0" + seconds;
+        }
+    }
+
+    formattedTime += seconds;
+
+    return QString::fromStdString(formattedTime);
 }
 
 Burst ExerciseViewController::changeColour()

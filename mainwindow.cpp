@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <qstring.h>
+#include <qbitmap.h>
+#include <experimental/filesystem>
+#include <fstream>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -36,6 +39,36 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->pushButton_11,
             ui->pushButton_12
     };
+
+    this->setup();
+
+    std::ifstream f("right2.png");
+    if( f ){
+        std::cout << "megvan\n";
+   }else{
+       std::cout << "nincs\n";
+    }
+
+    //QPixmap p = QPixmap("right2.png");
+    //QIcon icon =(p);
+    //QPushButton *button = ui->pushButton_1;
+
+    //button->setFixedSize(110,68);
+    //button->setMask(p.mask());
+    //button->setIcon(icon);
+    //button->setIconSize(ui->pushButton_1->size());
+
+    //button->setStyleSheet("background-color: rgba(255,255,255, 0);");
+
+    ui->kisido->setAttribute(Qt::WA_TranslucentBackground);
+    ui->nagyido->setAttribute(Qt::WA_TranslucentBackground);
+
+    for(auto& label: labels){
+        label->setAttribute(Qt::WA_TranslucentBackground);
+    }
+    for(auto& button: buttons){
+        button->setAttribute(Qt::WA_TranslucentBackground);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -46,12 +79,44 @@ MainWindow::~MainWindow()
 
 void MainWindow::display(ViewContent *viewContent)
 {
-    for(unsigned int i=0;i<12;i++){
-        labels[i]->setText(viewContent-> buttons[i].percent);
-        ui->kisido->setText(viewContent->timeIndicator.time);
-        ui->nagyido->setText(viewContent->clock);
-        ui->master_Label->setText(viewContent->masterButton.percent);
+
+    switch (viewContent->timeIndicator.color) {
+    case Red:{this->ui->kisido->setStyleSheet("QLabel {color : red;}"); break;}
+    case Green:{this->ui->kisido->setStyleSheet("QLabel {color : green;}"); break;}
+    case Yellow:{this->ui->kisido->setStyleSheet("QLabel {color : yellow;}"); break;}
     }
+
+    ui->kisido->setText(viewContent->timeIndicator.time);
+    ui->nagyido->setText(viewContent->clock);
+    ui->master_Label->setText(viewContent->masterButton.percent);
+    ui->master->setDefault(viewContent->masterButton.isPressed);
+    ui->select->setDefault(viewContent->selectButtonPressed);
+    ui->asp->setDefault(viewContent->ASPButton);
+    ui->horizontalSlider->setValue(viewContent->sliderValue);
+    //this->centralWidget()->setStyleSheet("{color: red}");
+   // this->centralWidget()->setStyleSheet("{background-image:url(\"right.png\")}");
+
+    switch (viewContent->startButtonState){
+    case Start:{
+        ui->starbutton->setText(QString("Start"));
+        break;}
+    case Pause:{
+        ui->starbutton->setText(QString("Pause"));
+        break;}
+    case Resume:{
+        ui->starbutton->setText(QString("Resume"));
+        break;}
+    }
+
+    for(unsigned int i=0; i < 12; i++){
+        labels[i]->setText(viewContent-> buttons[i].percent);
+        buttons[i]->setDefault(viewContent->buttons[i].isPressed);
+    }
+}
+
+void MainWindow::setup()
+{
+
 }
 
 int MainWindow::getId(QObject *object) const{

@@ -27,6 +27,7 @@ public:
     void updateIntensities(bool direction);
     void buttonSelected(int id, bool multiple);
     void setButtonValues(int value);
+    int getSliderValue() const;
 
     MuscleButtonProperties* getMuscleButtonProperties();
 };

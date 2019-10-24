@@ -14,6 +14,7 @@
 #include <time.h>
 #include <thread>
 #include <chrono>
+#include <qcolor.h>
 #include <iostream>
 
 
@@ -42,6 +43,8 @@ private:
     CurrentProperties* currentViewProperties;
     void manageTime();
     Burst changeColour();
+    QString getFormattedCurrentTime() const;
+
 public:
     ExerciseViewController(BaseExerciseView* view);
     ~ExerciseViewController();

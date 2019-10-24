@@ -65,17 +65,17 @@ void ButtonStore::buttonSelected(int id, bool multiple)
                     selectedButtonCount--;
                 }
             }
-//            button->isPressed = !button->isPressed;
-//            if(button->isPressed){
-//                selectedButtonCount++;
-//            }else{
-//                if(selectedButtonCount == 1){
-//                    button->isPressed = !button->isPressed;
-//                }else{
-//                    selectedButtonCount--;
-//                }
-//            }
-//            return;
+            //            button->isPressed = !button->isPressed;
+            //            if(button->isPressed){
+            //                selectedButtonCount++;
+            //            }else{
+            //                if(selectedButtonCount == 1){
+            //                    button->isPressed = !button->isPressed;
+            //                }else{
+            //                    selectedButtonCount--;
+            //                }
+            //            }
+            //            return;
         }
     }
 }
@@ -107,4 +107,19 @@ MuscleButtonProperties* ButtonStore::getMuscleButtonProperties()
     }
 
     return toReturn;
+}
+
+int ButtonStore::getSliderValue() const
+{
+    if (selectedButtonCount == 0){
+        return 0;
+    }
+
+    for(auto& button: buttons){
+        if ( button->isPressed ){
+            return button->intensity;
+        }
+    }
+
+    return 0;
 }

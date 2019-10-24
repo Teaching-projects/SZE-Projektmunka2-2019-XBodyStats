@@ -1,12 +1,13 @@
 #ifndef CONTRACTS_H
 #define CONTRACTS_H
 #include <qstring.h>
+#include <qcolor.h>
 #include <iostream>
 //TODO implement these
 
 enum Burst{Red,Green,Yellow};
 
-enum StartButtonState{Start, Pause};
+enum StartButtonState{Start, Pause, Resume};
 
 struct MuscleButtonProperties{
     bool isPressed;
@@ -26,12 +27,13 @@ struct MasterButton{
 
 struct BurstTimeIndicator{
     QString time;
-    int color;
+    Burst color;
 };
 
 // View will be displayed directly by View
 struct ViewContent  {
    MuscleButtonProperties *buttons;
+   int sliderValue;
    bool selectButtonPressed;
    bool ASPButton;
    QString clock;

@@ -69,6 +69,7 @@ private:
     std::vector<QLabel*> labels;
     std::vector<QPushButton*> buttons;
     int getId(QObject *)const;
+    void setup();
 
 };
 
