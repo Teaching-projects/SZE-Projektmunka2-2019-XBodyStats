@@ -3,5 +3,6 @@
         <file>right.png</file>
         <file>resizedRight.png</file>
         <file>xbodybackground.png</file>
+        <file>xbodybackgroundd.png</file>
     </qresource>
 </RCC>

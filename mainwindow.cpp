@@ -5,6 +5,7 @@
 #include <experimental/filesystem>
 #include <fstream>
 
+QPushButton* change(QPushButton* button);
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->label_10,
             ui->label_11,
             ui->label_12
-    };
+};
     buttons = std::vector<QPushButton*>{
             ui->pushButton_1,
             ui->pushButton_2,
@@ -38,37 +39,37 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->pushButton_10,
             ui->pushButton_11,
             ui->pushButton_12
-    };
+};
 
     this->setup();
-
-    std::ifstream f("right2.png");
-    if( f ){
-        std::cout << "megvan\n";
-   }else{
-       std::cout << "nincs\n";
-    }
-
-    //QPixmap p = QPixmap("right2.png");
-    //QIcon icon =(p);
-    //QPushButton *button = ui->pushButton_1;
-
-    //button->setFixedSize(110,68);
-    //button->setMask(p.mask());
-    //button->setIcon(icon);
-    //button->setIconSize(ui->pushButton_1->size());
-
-    //button->setStyleSheet("background-color: rgba(255,255,255, 0);");
 
     ui->kisido->setAttribute(Qt::WA_TranslucentBackground);
     ui->nagyido->setAttribute(Qt::WA_TranslucentBackground);
 
+    ui->negative = change(ui->negative);
+    ui->pozitive = change(ui->pozitive);
+    ui->asp = change(ui->asp);
+    ui->master = change(ui->master);
+    ui->select = change(ui->select);
+    ui->starbutton = change(ui->starbutton);
+    ui->master_Label->setStyleSheet("QLabel {font-size: 20px;font-weight: bold; color: gray;}");
+
     for(auto& label: labels){
         label->setAttribute(Qt::WA_TranslucentBackground);
+        label->setStyleSheet("QLabel {font-size: 20px;font-weight: bold; color: gray;}");
     }
     for(auto& button: buttons){
-        button->setAttribute(Qt::WA_TranslucentBackground);
+        QBrush tb(Qt::transparent); // Transparent brush, solid pattern
+        button->setPalette(QPalette(tb, tb, tb, tb, tb, tb, tb, tb, tb));
+        button->setStyleSheet("QPushButton {border: none;}");
     }
+}
+
+QPushButton* change(QPushButton* button){
+    QBrush tb(Qt::transparent); // Transparent brush, solid pattern
+    button->setPalette(QPalette(tb, tb, tb, tb, tb, tb, tb, tb, tb));
+    button->setStyleSheet("QPushButton {border: none;}");
+    return button;
 }
 
 MainWindow::~MainWindow()
@@ -89,12 +90,28 @@ void MainWindow::display(ViewContent *viewContent)
     ui->kisido->setText(viewContent->timeIndicator.time);
     ui->nagyido->setText(viewContent->clock);
     ui->master_Label->setText(viewContent->masterButton.percent);
-    ui->master->setDefault(viewContent->masterButton.isPressed);
-    ui->select->setDefault(viewContent->selectButtonPressed);
-    ui->asp->setDefault(viewContent->ASPButton);
+   // ui->master->setDefault(viewContent->masterButton.isPressed);
+
+    if (viewContent->selectButtonPressed){
+        ui->select->setStyleSheet("");
+    }else{
+        ui->select->setStyleSheet("QPushButton {border: none;}");
+    }
+
+    if (viewContent->masterButton.isPressed){
+        ui->master->setStyleSheet("");
+    }else{
+        ui->master->setStyleSheet("QPushButton {border: none;}");
+    }
+
+    if (viewContent->ASPButton){
+        ui->asp->setStyleSheet("");
+    }else{
+        ui->asp->setStyleSheet("QPushButton {border: none;}");
+    }
+
+   // ui->asp->setDefault(viewContent->ASPButton);
     ui->horizontalSlider->setValue(viewContent->sliderValue);
-    //this->centralWidget()->setStyleSheet("{color: red}");
-   // this->centralWidget()->setStyleSheet("{background-image:url(\"right.png\")}");
 
     switch (viewContent->startButtonState){
     case Start:{
@@ -111,6 +128,11 @@ void MainWindow::display(ViewContent *viewContent)
     for(unsigned int i=0; i < 12; i++){
         labels[i]->setText(viewContent-> buttons[i].percent);
         buttons[i]->setDefault(viewContent->buttons[i].isPressed);
+        if(viewContent->buttons[i].isPressed){
+            buttons[i]->setStyleSheet("");
+        }else{
+            buttons[i]->setStyleSheet("QPushButton {border: none;}");
+        }
     }
 }
 

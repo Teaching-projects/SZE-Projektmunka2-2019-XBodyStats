@@ -1,7 +1,6 @@
 #ifndef EXERCISEVIEWDELEGATE_H
 #define EXERCISEVIEWDELEGATE_H
 #include "baseexerciseview.h"
-class BaseExerciseView;
 
 //Delegate class inherited by ExerciseViewController
 class ExerciseViewDelegate

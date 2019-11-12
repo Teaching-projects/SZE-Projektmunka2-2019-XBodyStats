@@ -7,7 +7,6 @@
 class BaseExerciseView
 {
 private:
-    //ExerciseViewDelegate* delegate;
 
 public:
     BaseExerciseView(){}
