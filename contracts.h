@@ -43,10 +43,45 @@ struct ViewContent  {
    //int slideValue; only if needed
 };
 
-// Will be used in DataMining constructor acquired from Model
-struct ModelData{
 
+/**
+ * Below lies the model data used for data mining
+ */
+
+enum Event {Button,Slider,Master};
+
+enum Muscle {Quadriceps, Hamstring, Glutes, Abs, LowerBack, Back, Trapezius, Pectoral, Arms, Shoulders, Calves};
+
+enum ExerciseType{Cardio, Weights};
+
+struct MuscleModel{
+    Muscle muscle;
+    int percent;
+    bool isSelected;
+    Event* chagedWith;
 };
 
+struct MasterButtonModel{
+    int percent;
+};
 
+struct ExerciseSecond{
+    int time;
+    MuscleModel* muscles;
+    MasterButtonModel master;
+};
+
+struct User{
+    bool sex;
+    int age;
+    int weight;
+    int height;
+};
+
+struct ModelData{
+    std::string fileName;
+    User user;
+    ExerciseType type;
+    ExerciseSecond* seconds;
+};
 #endif // CONTRACTS_H
