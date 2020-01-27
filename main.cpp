@@ -11,6 +11,7 @@
 #include "filehandler.h"
 #include "Algorithm.h"
 #include "clustering.h"
+#include "generator.h"
 
 using namespace std;
 
@@ -37,6 +38,8 @@ int main(int argc, char *argv[])
     MainWindow window;
     window.show();
 
+
+
     ExerciseViewController* viewController= new ExerciseViewController(&window);
     window.delegate = viewController;
 
@@ -52,6 +55,8 @@ int main(int argc, char *argv[])
     //printResult(*dataMining->getResult(), false);
 
     //closing(model, dataMining);
+    Generator* g = new Generator;
+    auto x = g->generateModels();
 
     return a.exec();
 }

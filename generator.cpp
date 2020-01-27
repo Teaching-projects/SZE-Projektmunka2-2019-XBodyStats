@@ -1,10 +1,16 @@
 #include "generator.h"
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
 Generator::Generator()
 {
+    this->config = Config();
+    config.gender = 0;
+    config.number = 100;
+    config.seconds = 1200;
+    config.relationship = vector<Muscle>();
     srand(time(nullptr));
 }
 
@@ -19,11 +25,11 @@ int randomNumber(int chance, int lowThreshold = 0){
     }
 }
 
-ExerciseSecond* beginning(double bmi, int age, bool sex){
-    ExerciseSecond* toReturn;
+ExerciseSecond* Generator::beginning(double bmi, int age, bool sex){
+    ExerciseSecond* toReturn = new ExerciseSecond;
     double lowerBMI = (bmi > 23) ? (bmi - (bmi - 23)*2) : bmi;
 
-    double bmiPercent = abs(23/lowerBMI);
+    double bmiPercent = abs(lowerBMI / 23);
     double agePercent;
 
     if(age <= 30){
@@ -34,23 +40,27 @@ ExerciseSecond* beginning(double bmi, int age, bool sex){
         agePercent = 0.9;
     }
 
-    double sexPercent = 0.95;
+    double sexPercent = sex ? 0.95 : 1.0;
 
-    int max = 100 * bmiPercent * agePercent * sexPercent;
+    double max = 100.0 * bmiPercent * agePercent * sexPercent;
 
     int muscleStart[Calves];
 
     for(int i = Quadriceps; i <= Calves; i++){
         Muscle m = static_cast<Muscle>(i);
 
-        int muscleMax = max - randomNumber(7);
-
+        int muscleMax = (int)max - randomNumber(7);
         muscleStart[m] = muscleMax;
+        MuscleModel* muscle = new MuscleModel;
+        muscle->muscle = m;
+        muscle->percent = muscleStart[m];
+        muscle->chagedWith = nullptr;
+        muscle->isSelected = false;
+        toReturn->muscles.push_back(muscle);
     }
 
     toReturn->time = 0;
     toReturn->master.percent = 50;
-    //toReturn->muscles->muscle
 
     return toReturn;
 }
@@ -62,14 +72,16 @@ vector<ModelData*> Generator::generateModels()
 
     for(int i=0; i<config.number; i++){
         ModelData* data = new ModelData();
-        data->user.sex = randomNumber(2);
+        data->user.sex = (randomNumber(100) <= 50) ? false : true;
         data->user.age = randomNumber(60,18);
         data->user.height = randomNumber(190,155);
         data->user.weight = randomNumber(90,55);
         data->type = Weights;
         data->fileName = i;
 
-        double bmi = data->user.weight / pow(2,(data->user.height/100));
+        double bmi = data->user.weight / ((double)(data->user.height/100.0) * (double)(data->user.height/100.0));
+
+        data->seconds.push_back(this->beginning(bmi,data->user.age,data->user.sex));
 
         for(int j = 0;j<config.seconds;j++){
 

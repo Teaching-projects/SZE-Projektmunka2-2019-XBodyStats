@@ -9,10 +9,10 @@
 using namespace std;
 
 struct Config{
-    int number;
+    int number = 100;
     bool gender;
     int seconds = 1200;
-    vector<Event> relationship;
+    vector<Muscle> relationship;
 };
 
 class Generator
@@ -21,7 +21,7 @@ public:
     Config config;
     Generator();
     ~Generator();
-
+    ExerciseSecond* beginning(double,int,bool);
     vector<ModelData*> generateModels();
 
 };
