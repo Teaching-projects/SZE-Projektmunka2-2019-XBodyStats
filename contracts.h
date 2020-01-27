@@ -4,7 +4,6 @@
 #include <qcolor.h>
 #include <iostream>
 #include <vector>
-
 //TODO implement these
 
 enum Burst{Red,Green,Yellow};
@@ -69,7 +68,7 @@ struct MasterButtonModel{
 
 struct ExerciseSecond{
     int time;
-    MuscleModel* muscles;
+    std::vector<MuscleModel*> muscles;
     MasterButtonModel master;
 };
 
@@ -84,6 +83,6 @@ struct ModelData{
     std::string fileName;
     User user;
     ExerciseType type;
-    ExerciseSecond* seconds;
+    std::vector<ExerciseSecond*> seconds;
 };
 #endif // CONTRACTS_H
