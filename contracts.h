@@ -3,6 +3,8 @@
 #include <qstring.h>
 #include <qcolor.h>
 #include <iostream>
+#include <vector>
+
 //TODO implement these
 
 enum Burst{Red,Green,Yellow};

@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <qstring.h>
 #include <qbitmap.h>
-#include <experimental/filesystem>
+//#include <experimental/filesystem>
 #include <fstream>
 
 QPushButton* change(QPushButton* button);

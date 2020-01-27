@@ -8,6 +8,9 @@
 #include "exerciseviewcontroller.h"
 #include "baseexerciseview.h"
 #include "datamining.h"
+#include "filehandler.h"
+#include "Algorithm.h"
+#include "clustering.h"
 
 using namespace std;
 
@@ -36,6 +39,9 @@ int main(int argc, char *argv[])
 
     ExerciseViewController* viewController= new ExerciseViewController(&window);
     window.delegate = viewController;
+
+    Algorithm* c = new Clustering(nullptr);
+    delete c;
 
     //Model* model = new Model();
     //DataMining* dataMining = new DataMining(model->getData());
