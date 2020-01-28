@@ -8,6 +8,7 @@ class StartEndDifferent:public Algorithm
 public:
     StartEndDifferent(std::vector<ModelData*>& _data);
     std::string run();
+    ~StartEndDifferent();
 private:
     int minage;
     int maxage;
@@ -16,7 +17,6 @@ private:
     int maxbmi;
     Muscle muscle;
 
-    ~StartEndDifferent();
 };
 
 #endif // STARTENDDIFFERENT_H

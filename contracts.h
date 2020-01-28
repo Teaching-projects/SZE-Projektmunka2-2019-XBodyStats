@@ -69,7 +69,7 @@ struct MasterButtonModel{
 struct ExerciseSecond{
     int time;
     std::vector<MuscleModel*> muscles;
-    MasterButtonModel master;
+    MasterButtonModel* master;
 };
 
 struct User{

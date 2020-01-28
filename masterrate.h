@@ -4,10 +4,11 @@
 #include <string>
 
 class MasterRate: public Algorithm
-{
+{ //van e olyan idopillanat ahol surubben hasznaljuk a mastert
 public:
     MasterRate(std::vector<ModelData*>& _data);
     std::string run();
+    ~MasterRate();
 private:
     int minage;
     int maxage;
@@ -15,9 +16,8 @@ private:
     int minbmi;
     int maxbmi;
     Muscle muscle;
-    int mins[2][20];
+    int mins[3][20];
 
-    ~MasterRate();
 };
 
 #endif // MASTERRATE_H

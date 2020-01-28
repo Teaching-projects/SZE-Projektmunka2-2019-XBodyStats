@@ -8,6 +8,7 @@ class StartVoltage: public Algorithm
 public:
     StartVoltage(std::vector<ModelData*>& _data);
     std::string run();
+    ~StartVoltage();
 private:
     int minage;
     int maxage;
@@ -16,7 +17,6 @@ private:
     int maxbmi;
     Muscle muscle;
 
-    ~StartVoltage();
 };
 
 #endif // STARTVOLTAGE_H
