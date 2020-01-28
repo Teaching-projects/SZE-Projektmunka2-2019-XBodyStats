@@ -9,19 +9,24 @@ VoltageRate::VoltageRate(std::vector<ModelData*>& _data):Algorithm (_data){
 }
 
 std::string VoltageRate::run(){
-    int sum = 0;
-    int max;
+    double sum = 0;
+    double max;
     bool talalt;
     for(auto d:data){
-        int bmi = d->user.weight/pow(d->user.height, 2);
+        double bmi = d->user.weight/pow((d->user.height / 100.0), 2);
         if((d->user.sex == sex) && (d->user.age <= maxage) && (d->user.age >= minage) && (bmi <= maxbmi) && (bmi >= minbmi)){
-            for(auto s: d->seconds){
-                for(int i = 0; i < s->muscles.size(); i++){
-                    if(s->muscles[i]->muscle == this->muscle && s->muscles[i]->isSelected == true){
-                        mins[0][(int)(s->time / 60)]++;
-                        for(int j = i; j >= 0; j++){
-                            if(s->muscles[i]->muscle == this->muscle && s->muscles[i]->isSelected == true){
-                                mins[1][(int)(s->time / 60)] += s->muscles[i]->percent - s->muscles[j]->percent;
+            for(int time = 0 ; time < d->seconds.size();time++){
+                ExerciseSecond* now = d->seconds[time];
+                for(int i = 0; i < now->muscles.size(); i++){
+                    if(now->muscles[i]->muscle == this->muscle && now->muscles[i]->isSelected == true){
+                        int asdasd = now->time/60;
+                        mins[0][(int)(now->time / 60)]++;
+                        int asdij = mins[0][(int)(now->time/60)];
+                        int k;
+                        for(int j = i-1; j >= 0; j--){
+                            if(d->seconds[j]->muscles[i]->muscle == this->muscle && (d->seconds[j]->muscles[i]->isSelected == true || j ==0)){
+                                int p = (int)(now->time / 60);
+                                mins[1][(int)(now->time / 60)] += now->muscles[i]->percent - d->seconds[j]->muscles[j]->percent;
                             }
                         }
                     }
@@ -30,6 +35,7 @@ std::string VoltageRate::run(){
         }
     }
     for(int i = 0; i < 20; i++){
+        int mfds = mins[0][i];
         if(mins[0][i] != 0){
             mins[1][i] = mins[1][i] / mins[0][i];
             sum += mins[0][i];
@@ -37,7 +43,7 @@ std::string VoltageRate::run(){
     }
     talalt = false;
     for (int i = 0;i<20;i++) {
-        if(mins[0][i]>=sum/4){
+        if(mins[0][i]>=sum/6){
             mins[2][i] = 1;
             talalt = true;
         }
@@ -48,9 +54,11 @@ std::string VoltageRate::run(){
         std::string toreturn = "Az általunk talalt osszefugges(ek) az adott kategoria es a(z) adott izomcsoport kozott:\n";
         for (int i = 0; i < 20; i++) {
             if(mins[2][i] == 1){
-                toreturn += i + ". perc\t" + std::to_string(mins[1][i]) + "%\n";
+                toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i]) + "%\n";
             }
         }
+        std::string s = toreturn;
+        std::cout << toreturn;
         return toreturn;
     }
 }

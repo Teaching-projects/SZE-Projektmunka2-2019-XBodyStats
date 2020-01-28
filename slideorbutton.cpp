@@ -19,7 +19,8 @@ std::string SlideOrButton::run(){
             }
         }
     }
-    int sum = buttonpercent+sliderpercent;
+    double sum = buttonpercent+sliderpercent;
+    std::string s =  "A valtoztatasok " + std::to_string(double((buttonpercent/sum)*100.0)) + "%-a tortent gombbal, mig " + std::to_string(double((sliderpercent/sum)*100.0)) + "%-a csuszkaval.";
     return "A valtoztatasok " + std::to_string(int((buttonpercent/sum)*100)) + "%-a tortent gombbal, mig " + std::to_string(int((sliderpercent/sum)*100)) + "%-a csuszkaval.";
 }
 

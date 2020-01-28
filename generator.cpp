@@ -92,10 +92,26 @@ vector<ModelData*> Generator::generateModels()
         for(int p = 0; p < 11 ; p++){
             lastPercents[p] = data->seconds[0]->muscles[p]->percent;
         }
-        cout << "--------------------------------\n";
-        cout << "NEW WORKOUT\n";
-        cout << "--------------------------------\n";
+        //cout << "--------------------------------\n";
+        //cout << "NEW WORKOUT\n";
+        //cout << "--------------------------------\n";
         for(int j = 120; j < config.seconds; j += 30){
+
+            if (j % 10) {
+                ExerciseSecond* m = new ExerciseSecond;
+                m->time = j;
+                m->master = new MasterButtonModel;
+                m->master->percent = 50 + randomNumber(40,-999,-20);
+                auto filler = this->filler(Calves);
+                MuscleModel* asd = new MuscleModel;
+                asd->muscle = Calves;
+                asd->percent = 0;
+                asd->isSelected = false;
+                asd->chagedWith = nullptr;
+                filler.push_back(asd);
+                m->muscles.insert(m->muscles.end(),filler.begin(),filler.end());
+                data->seconds.push_back(m);
+            }
 
             useButton = (randomNumber(100) <= 20) ? false : true;
 
@@ -132,9 +148,9 @@ vector<ModelData*> Generator::generateModels()
                 MuscleModel* m = new MuscleModel();
                 m->muscle = Quadriceps;
                 m->percent = lastPercents[Quadriceps];
-                cout << "before:\t" << m->percent << "\t";
+                //cout << "before:\t" << m->percent << "\t";
                 m->percent += randomNumber(5,-999,-4);
-                cout << "after:\t" << m->percent << "\n";
+                //cout << "after:\t" << m->percent << "\n";
                 lastPercents[Quadriceps] = m->percent;
                 if (m->percent >= 100){
                     m->percent -= 10;
@@ -152,9 +168,25 @@ vector<ModelData*> Generator::generateModels()
             }
         }
 
+        for(int i = 0;i<50;i++){
+            ExerciseSecond* m = new ExerciseSecond;
+            m->time = 433;
+            m->master = nullptr;
+            MuscleModel* as = new MuscleModel;
+            vector<MuscleModel*> filler = this->filler(Quadriceps);
+            m->muscles.insert(m->muscles.end(),filler.begin(),filler.end());
+            as->muscle = Quadriceps;
+            as->percent = lastSecond->muscles[10]->percent + randomNumber(10,-999,-5);
+            as->chagedWith = useButton ? new Event(Button) : new Event(Slider);
+            as->isSelected = true;
+            m->muscles.push_back(as);
+            data->seconds.push_back(m);
+        }
+
+
         toReturn.push_back(data);
     }
-    cout << "asiudas";
+    //cout << "asiudas";
     return toReturn;
 }
 

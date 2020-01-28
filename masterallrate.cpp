@@ -3,7 +3,7 @@
 MasterAllRate::MasterAllRate(std::vector<ModelData*>& _data):Algorithm (_data){}
 
 std::string MasterAllRate::run(){
-    int masterdb;
+    int masterdb = 0;
     int osszdb = 0;
     for (auto d: data) {
         osszdb += d->seconds.size();
@@ -13,8 +13,8 @@ std::string MasterAllRate::run(){
             }
         }
     }
-
-    return "Az edzesek soran a valtoztatasok " + std::to_string(masterdb/osszdb) + "%-a tortent master gombbal(" + std::to_string(masterdb) + " db)";
+    double asd = ((masterdb/asd)*100);
+    return  "Az edzesek soran a valtoztatasok " + std::to_string(asd) + "%-a tortent master gombbal(" + std::to_string(masterdb) + " db)";
 }
 
 MasterAllRate::~MasterAllRate(){

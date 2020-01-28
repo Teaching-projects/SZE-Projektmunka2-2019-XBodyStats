@@ -1,7 +1,7 @@
 #ifndef CLUSTERING_H
 #define CLUSTERING_H
 #include "Algorithm.h"
-
+/*
 class Clustering: public Algorithm
 {
 public:
@@ -19,5 +19,5 @@ public:
         this->cleanUp();
     }
 };
-
+*/
 #endif // CLUSTERING_H

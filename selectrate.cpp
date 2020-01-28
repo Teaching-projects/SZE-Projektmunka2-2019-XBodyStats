@@ -20,8 +20,8 @@ std::string SelectRate::run(){
             }
         }
     }
+    //std::string s =  "Az edzesek soran a valtoztatasok " + std::to_string(selectuse/osszdb) + "%-a tortent select gombbal(" + std::to_string(selectuse) + " db)";
     return "Az edzesek soran a valtoztatasok " + std::to_string(selectuse/osszdb) + "%-a tortent select gombbal(" + std::to_string(selectuse) + " db)";
-
 }
 
 SelectRate::~SelectRate(){

@@ -2,6 +2,7 @@
 #define ALGORITHM_H
 #include <iostream>
 #include <filehandler.h>
+#include <iomanip>
 #include "contracts.h"
 #include<vector>
 
@@ -14,6 +15,12 @@ public:
 
         content = "";
     }
+
+    int minage = 30;
+    int maxage = 55;
+    bool sex = 0;
+    int minbmi = 18;
+    int maxbmi = 25;
 
     std::string content;
     std::vector<ModelData*> data;

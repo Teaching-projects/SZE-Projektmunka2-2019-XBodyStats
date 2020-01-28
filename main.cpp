@@ -10,8 +10,14 @@
 #include "datamining.h"
 #include "filehandler.h"
 #include "Algorithm.h"
-#include "clustering.h"
 #include "generator.h"
+#include "selectrate.h"
+#include "slideorbutton.h"
+#include "startenddifferent.h"
+#include "startvoltage.h"
+#include "voltagerate.h"
+#include "masterallrate.h"
+#include "masterrate.h"
 
 using namespace std;
 
@@ -38,13 +44,30 @@ int main(int argc, char *argv[])
     MainWindow window;
     window.show();
 
+    Generator* gen = new Generator;
 
+    auto test = gen->generateModels();
+
+    Algorithm* s = new StartVoltage(test);
+    //delete s;
+
+    Algorithm* s1 = new SelectRate(test);
+    //delete s1;
+
+    Algorithm* s2 = new SlideOrButton(test);
+    //delete s2;
+
+    Algorithm* s3 = new VoltageRate(test);
+    //delete s3;
+
+    Algorithm* s4 = new StartEndDifferent(test);
+    //delete s4;
+
+    Algorithm* s5 = new MasterAllRate(test);
+    delete s5;
 
     ExerciseViewController* viewController= new ExerciseViewController(&window);
     window.delegate = viewController;
-
-    Algorithm* c = new Clustering(nullptr);
-    delete c;
 
     //Model* model = new Model();
     //DataMining* dataMining = new DataMining(model->getData());

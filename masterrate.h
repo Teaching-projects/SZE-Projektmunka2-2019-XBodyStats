@@ -1,6 +1,7 @@
 #ifndef MASTERRATE_H
 #define MASTERRATE_H
 #include "Algorithm.h"
+#include "cmath"
 #include <string>
 
 class MasterRate: public Algorithm
@@ -10,12 +11,6 @@ public:
     std::string run();
     ~MasterRate();
 private:
-    int minage;
-    int maxage;
-    bool sex;
-    int minbmi;
-    int maxbmi;
-    Muscle muscle;
     int mins[3][20];
 
 };

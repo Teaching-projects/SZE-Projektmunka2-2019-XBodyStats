@@ -1,6 +1,7 @@
 #ifndef VOLTAGERATE_H
 #define VOLTAGERATE_H
 #include "Algorithm.h"
+#include <cmath>
 #include <string>
 
 class VoltageRate:public Algorithm
@@ -10,12 +11,7 @@ public:
     std::string run();
     ~VoltageRate();
 private:
-    int minage;
-    int maxage;
-    bool sex;
-    int minbmi;
-    int maxbmi;
-    Muscle muscle;
+    Muscle muscle = Quadriceps;
     int mins[3][20];
 
 };
