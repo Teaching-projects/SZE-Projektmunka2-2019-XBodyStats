@@ -14,10 +14,6 @@ struct MuscleButtonProperties{
     bool isPressed;
     int buttonId;
     QString percent;
-
-    void printContent(){
-        std::cout << "button "<<buttonId << " ispressed: "<< isPressed << " percent "<< percent.toUtf8().constData() << std::endl;
-    }
 };
 
 struct MasterButton{
@@ -69,7 +65,7 @@ struct MasterButtonModel{
 struct ExerciseSecond{
     int time;
     std::vector<MuscleModel*> muscles;
-    MasterButtonModel master;
+    MasterButtonModel* master;
 };
 
 struct User{

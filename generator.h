@@ -23,7 +23,8 @@ public:
     ~Generator();
     ExerciseSecond* beginning(double,int,bool);
     vector<ModelData*> generateModels();
-
+    MuscleModel* getMuscle(vector<MuscleModel*>& muscles, int muscle);
+    vector<MuscleModel*> filler(Muscle except);
 };
 
 #endif // GENERATOR_H
