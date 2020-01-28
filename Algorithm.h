@@ -3,24 +3,25 @@
 #include <iostream>
 #include <filehandler.h>
 #include "contracts.h"
+#include<vector>
 
 class Algorithm{
 private:
 
 public:
-    Algorithm(ModelData* data)
-        : data(data){
+    Algorithm(std::vector<ModelData*>& _data):data(_data)
+    {
+
         content = "";
     }
 
     std::string content;
-    ModelData* data;
-    virtual std::string run(ModelData* data) = 0;
-    virtual void cleanUp() =0;
-            //body is always this->content = this->run(nullptr);
+    std::vector<ModelData*> data;
+    virtual std::string run() = 0;
+    //virtual void cleanUp() =0;
+            //body is always this->content = this->run();
 
     virtual ~Algorithm(){
-        FileHandler::getInstance().appendContent(this->content);
     }
 };
 
