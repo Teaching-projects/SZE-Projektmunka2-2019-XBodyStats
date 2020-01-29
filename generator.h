@@ -21,6 +21,7 @@ public:
     Config config;
     Generator();
     ~Generator();
+    double muscleMultiplier[11];
     ExerciseSecond* beginning(double,int,bool);
     vector<ModelData*> generateModels();
     MuscleModel* getMuscle(vector<MuscleModel*>& muscles, int muscle);

@@ -18,6 +18,7 @@
 #include "voltagerate.h"
 #include "masterallrate.h"
 #include "masterrate.h"
+#include "algorithmqueue.h"
 
 using namespace std;
 
@@ -43,11 +44,24 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow window;
     window.show();
+    AlgorithmParams* params = new AlgorithmParams;
+    if(argc >=5){
+        params->minage = atoi(argv[1]);
+        params->maxage = atoi(argv[2]);
+        params->sex = atoi(argv[3]);
+        params->minbmi = atoi(argv[4]);
+        params->maxbmi = atoi(argv[5]);
+    }
 
     Generator* gen = new Generator;
-
     auto test = gen->generateModels();
 
+    AlgorithmQueue* queue = new AlgorithmQueue(test, params);
+    delete queue;
+
+    FileHandler::getInstance().writeToFile();
+
+/*
     Algorithm* s = new StartVoltage(test);
     //delete s;
 
@@ -68,7 +82,7 @@ int main(int argc, char *argv[])
 
     Algorithm* s6 = new MasterRate(test);
     delete s6;
-
+*/
 
 
     ExerciseViewController* viewController= new ExerciseViewController(&window);
@@ -83,8 +97,6 @@ int main(int argc, char *argv[])
     //printResult(*dataMining->getResult(), false);
 
     //closing(model, dataMining);
-    Generator* g = new Generator;
-    auto x = g->generateModels();
 
     return a.exec();
 }

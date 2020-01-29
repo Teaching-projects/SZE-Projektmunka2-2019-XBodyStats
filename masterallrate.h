@@ -6,7 +6,7 @@
 class MasterAllRate:public Algorithm
 {
 public:
-    MasterAllRate(std::vector<ModelData*>& _data);
+    MasterAllRate(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     ~MasterAllRate();
 };

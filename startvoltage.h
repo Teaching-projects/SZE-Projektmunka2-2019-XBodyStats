@@ -7,7 +7,7 @@
 class StartVoltage: public Algorithm
 {
 public:
-    StartVoltage(std::vector<ModelData*>& _data);
+    StartVoltage(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     ~StartVoltage();
 };
