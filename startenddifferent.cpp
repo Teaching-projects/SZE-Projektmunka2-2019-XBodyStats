@@ -1,4 +1,5 @@
 #include "startenddifferent.h"
+#include <sstream>
 
 StartEndDifferent::StartEndDifferent(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data,params){}
 
@@ -33,11 +34,14 @@ std::string StartEndDifferent::run(){
         }
     }
     std::string toreturn = "\n\n\n-----------------\nOutput of StartEndDifferent:\nEbben a kategoriaban az izomcsoportok atlagos zaro feszultsegszintje: \n";
+    std::stringstream ss("");
+    ss << "\n\n\n-----------------\nOutput of StartEndDifferent:\nEbben a kategoriaban az izomcsoportok atlagos zaro feszultsegszintje: \n";
     for(int i = 0; i < 11; i++){
         avrg[i] = sum[i]/ db;
-        toreturn += this->format(izomcsoport[i],4) + '\t' + std::to_string(avrg[i]) + "%\n";
+        ss << this->format(izomcsoport[i], 4) << '\t' << std::setprecision(4) << avrg[i] << "%\n";
+        //toreturn += this->format(izomcsoport[i],4) + '\t' + std::to_string(avrg[i]) + "%\n";
     }
-    //std::cout << toreturn;
+    toreturn = ss.str();
     return toreturn;
 }
 
