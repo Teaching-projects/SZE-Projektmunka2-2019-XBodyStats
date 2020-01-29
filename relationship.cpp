@@ -9,6 +9,7 @@ Relationship::Relationship(std::vector<ModelData*>& _data):Algorithm (_data){
 }
 
 std::string Relationship::run(){
+    std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
     for(auto dat: data){
         for(auto sec1: dat->seconds){
             for(auto musc1: sec1->muscles){
@@ -16,6 +17,7 @@ std::string Relationship::run(){
                     for(auto musc2: sec1->muscles){
                         if(musc1 != musc2){
                             if(musc2->isSelected == true){
+                               std::string safsd = izomcsoport[musc1->muscle] + " - " + izomcsoport[musc2->muscle];
                                 muscrerelation[musc1->muscle][musc2->muscle]++;
                             }
                         }
@@ -26,6 +28,7 @@ std::string Relationship::run(){
                                 for(auto musc2: sec2->muscles){
                                     if(musc1 != musc2){
                                         if(musc2->isSelected == true){
+                                            std::string sadaf = izomcsoport[musc1->muscle] + " - " + izomcsoport[musc2->muscle];
                                             muscrerelation[musc1->muscle][musc2->muscle]++;
                                         }
                                     }
@@ -43,7 +46,7 @@ std::string Relationship::run(){
         }
     }
     std::string toreturn="Az altalunk felmert edzesek alapjan ezen izomcsoportok intenzitasat modositjak egyszerre:\n";
-    std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
+    //std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
     int sum;
     for(int i = 0; i < 11; i++){
         sum = 0;
@@ -52,8 +55,8 @@ std::string Relationship::run(){
                 sum += muscrerelation[i][j];
              }
         }
-        for(int j = 0; j < 11; j++){
-            if(i != j){
+        for(int j = i; j < 11; j++){
+            if(i != j && sum > 5){
                 if(muscrerelation[i][j] >= sum / 6){
                     std::string afdasfasf= izomcsoport[i] + " - " + izomcsoport[j];
                     toreturn += izomcsoport[i] + " - " + izomcsoport[j] + '\n';
