@@ -21,14 +21,15 @@ std::string VoltageRate::run(){
                     if(now->muscles[i]->muscle == this->muscle && now->muscles[i]->isSelected == true){
                         int asdasd = now->time/60;
                         mins[0][(int)(now->time / 60)]++;
+                        mins[1][(int)(now->time / 60)] += now->muscles[i]->percent;
                         int asdij = mins[0][(int)(now->time/60)];
                         int k;
-                        for(int j = i-1; j >= 0; j--){
+                        /*for(int j = i-1; j >= 0; j--){
                             if(d->seconds[j]->muscles[i]->muscle == this->muscle && (d->seconds[j]->muscles[i]->isSelected == true || j ==0)){
                                 int p = (int)(now->time / 60);
                                 mins[1][(int)(now->time / 60)] += now->muscles[i]->percent - d->seconds[j]->muscles[j]->percent;
                             }
-                        }
+                        }*/
                     }
                 }
             }
@@ -54,7 +55,10 @@ std::string VoltageRate::run(){
         std::string toreturn = "Az általunk talalt osszefugges(ek) az adott kategoria es a(z) adott izomcsoport kozott:\n";
         for (int i = 0; i < 20; i++) {
             if(mins[2][i] == 1){
-                toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i]) + "%\n";
+                int valami = mins[1][i] - mins[1][i-1];
+                toreturn += std::to_string(i) + ". perc\t" + std::to_string((mins[1][i] - mins[1][i-1])) + "%\n";
+                //int valami = mins[1][i] - mins[1][i-1];
+                int asf;
             }
         }
         std::string s = toreturn;

@@ -22,10 +22,11 @@ std::string StartVoltage::run(){
             }
         }
     }
-    std::string toreturn = "Ebben a kategoriaban az izomcsoportok atlagos feszultsegszintje: \n";
+    std::string toreturn = "Ebben a kategoriaban az izomcsoportok atlagos kezdo feszultsegszintje: \n";
+    std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
     for (int i = 0; i < 11; i++) {
         avrg[i] = sum[i] / db;
-        toreturn += std::to_string(i) + '\t' + std::to_string(avrg[i]) + '\n';
+        toreturn += izomcsoport[i] + '\t' + std::to_string(avrg[i]) + '\n';
     }
     return toreturn;
 }

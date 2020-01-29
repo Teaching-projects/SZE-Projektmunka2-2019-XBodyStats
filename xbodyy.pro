@@ -30,7 +30,8 @@ SOURCES += \
     slideorbutton.cpp \
     startenddifferent.cpp \
     startvoltage.cpp \
-    voltagerate.cpp
+    voltagerate.cpp \
+    relationship.cpp
 
 HEADERS += \
     Algorithm.h \
@@ -51,7 +52,8 @@ HEADERS += \
     slideorbutton.h \
     startenddifferent.h \
     startvoltage.h \
-    voltagerate.h
+    voltagerate.h \
+    relationship.h
 
 FORMS += \
     mainwindow.ui
