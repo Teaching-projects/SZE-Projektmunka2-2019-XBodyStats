@@ -97,6 +97,6 @@ int main(int argc, char *argv[])
     //printResult(*dataMining->getResult(), false);
 
     //closing(model, dataMining);
-
+    //exit(EXIT_FAILURE);
     return a.exec();
 }
