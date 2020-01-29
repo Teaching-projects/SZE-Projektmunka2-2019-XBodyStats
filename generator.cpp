@@ -92,6 +92,9 @@ vector<ModelData*> Generator::generateModels()
         for(int p = 0; p < 11 ; p++){
             lastPercents[p] = data->seconds[0]->muscles[p]->percent;
         }
+
+        int db = 0;
+
         //cout << "--------------------------------\n";
         //cout << "NEW WORKOUT\n";
         //cout << "--------------------------------\n";
@@ -101,7 +104,7 @@ vector<ModelData*> Generator::generateModels()
                 ExerciseSecond* m = new ExerciseSecond;
                 m->time = j;
                 m->master = new MasterButtonModel;
-                m->master->percent = 50 + randomNumber(40,-999,-20);
+                m->master->percent = 50 + randomNumber(10,-999,-5);
                 auto filler = this->filler(Calves);
                 MuscleModel* asd = new MuscleModel;
                 asd->muscle = Calves;
@@ -111,6 +114,7 @@ vector<ModelData*> Generator::generateModels()
                 filler.push_back(asd);
                 m->muscles.insert(m->muscles.end(),filler.begin(),filler.end());
                 data->seconds.push_back(m);
+                db++;
             }
 
             useButton = (randomNumber(100) <= 20) ? false : true;
@@ -179,6 +183,22 @@ vector<ModelData*> Generator::generateModels()
             as->percent = lastSecond->muscles[10]->percent + randomNumber(10,-999,-5);
             as->chagedWith = useButton ? new Event(Button) : new Event(Slider);
             as->isSelected = true;
+            m->muscles.push_back(as);
+            data->seconds.push_back(m);
+        }
+
+        for(int i = 0;i<50;i++){
+            ExerciseSecond* m = new ExerciseSecond;
+            m->time = 900;
+            m->master = new MasterButtonModel;
+            m->master->percent = 75;
+            MuscleModel* as = new MuscleModel;
+            auto filler = this->filler(Quadriceps);
+            m->muscles.insert(m->muscles.end(),filler.begin(),filler.end());
+            as->muscle = Quadriceps;
+            as->percent = 50;
+            as->chagedWith = nullptr;
+            as->isSelected = false;
             m->muscles.push_back(as);
             data->seconds.push_back(m);
         }

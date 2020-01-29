@@ -1,4 +1,5 @@
 #include "masterrate.h"
+#include <iostream>
 
 MasterRate::MasterRate(std::vector<ModelData*>& _data):Algorithm (_data){
     for(int i = 0; i < 2; i++){
@@ -9,34 +10,44 @@ MasterRate::MasterRate(std::vector<ModelData*>& _data):Algorithm (_data){
 }
 
 std::string MasterRate::run(){
-    int sum = 0;
+    double sum = 0;
     bool talalt;
     for(auto d:data){
-        int bmi = d->user.weight/pow(d->user.height, 2);
+        double bmi = d->user.weight/pow(d->user.height/100.0, 2);
         if((d->user.sex == sex) && (d->user.age <= maxage) && (d->user.age >= minage) && (bmi <= maxbmi) && (bmi >= minbmi)){
-            for(int i = 0; i < d->seconds.size(); i++){
+            for(int i = 1; i < d->seconds.size(); i++){
                 if(d->seconds[i]->master != nullptr){
-                    int korabbi;
-                    for(int j = i; j >= 0; j--){
+                    double korabbi = 0.0;
+                    for(int j = i-1; j >= 0; j--){
                         if(d->seconds[j]->master != nullptr){
-                            int korabbi = d->seconds[j]->master->percent;
+                            korabbi = d->seconds[j]->master->percent;
+                            break;
                         }
                     }
+                    auto minute = (int)(d->seconds[i]->time / 60);
                     mins[0][(int)(d->seconds[i]->time / 60)]++;
+                    auto minsa = mins[0][minute];
+                    auto asdas =  d->seconds[i]->master->percent - korabbi;
                     mins[1][(int)(d->seconds[i]->time / 60)] += d->seconds[i]->master->percent - korabbi;
                 }
             }
         }
     }
+
+
     for(int i = 0; i < 20; i++){
-        if(mins[0][i] != 0){
-            mins[1][i] = mins[1][i] / mins[0][i];
+        if(mins[0][i] > 0){
+            int safsdfa = mins[1][i];
+            mins[1][i] = mins[1][i] / (double)mins[0][i];
+            auto percossz = mins[0][i];
             sum += mins[0][i];
         }
     }
     talalt = false;
     for (int i = 0;i<20;i++) {
-        if(mins[0][i]>=sum/4){
+        if(mins[0][i] >= sum/6){
+            auto vmi = mins[0][i];
+            auto vmiaa = mins;
             mins[2][i] = 1;
             talalt = true;
         }
@@ -44,13 +55,17 @@ std::string MasterRate::run(){
     if(false == talalt){
         return "Nincs osszefugges az adott kategoria es master gomb hasznalata kozott.";
     }else{
-        std::string toreturn = "Az általunk talalt osszefugges(ek) az adott kategoria es a master gomb hasznalata kozott:\n";
+        std::string toreturn = "Az általunk talalt osszefugges(ek) az adott kategoria es a master gomb hasznalatanak merteke kozott:\n";
         for (int i = 0; i < 20; i++) {
             if(mins[2][i] == 1){
-                toreturn += i + ". perc\t" + std::to_string(mins[1][i]) + "%\n";
+                auto asdminuszegy = mins[1][i-1];
+                auto asd = mins[1][i];
+                toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i]) + "\n";
             }
         }
-        return toreturn;
+        std::string s =  toreturn;
+        std::cout << s;
+        return s;
     }
 }
 

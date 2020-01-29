@@ -64,7 +64,12 @@ int main(int argc, char *argv[])
     //delete s4;
 
     Algorithm* s5 = new MasterAllRate(test);
-    delete s5;
+    //delete s5;
+
+    Algorithm* s6 = new MasterRate(test);
+    delete s6;
+
+
 
     ExerciseViewController* viewController= new ExerciseViewController(&window);
     window.delegate = viewController;
