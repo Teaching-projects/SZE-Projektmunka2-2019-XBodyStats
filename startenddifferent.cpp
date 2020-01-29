@@ -23,7 +23,8 @@ std::string StartEndDifferent::run(){
             for (auto s:d->seconds) {
                 for(int i = 0; i<11; i++){
                     if(s->muscles[i]->isSelected == true){
-                        currentPercents[i] = s->muscles[i]->percent;
+                        currentPercents[s->muscles[i]->muscle] = s->muscles[i]->percent;
+                        int k;
                     }
                 }
             }
