@@ -57,9 +57,9 @@ ExerciseSecond* Generator::beginning(double bmi, int age, bool sex){
 
     double max = 100.0 * bmiPercent * agePercent * sexPercent;
 
-    int muscleStart[Calves];
+    int muscleStart[11];
 
-    for(int i = Quadriceps; i <= Calves; i++){
+    for(int i = 0; i < 11; i++){
         Muscle m = static_cast<Muscle>(i);
 
         int muscleMax = (int)max - randomNumber(10);
