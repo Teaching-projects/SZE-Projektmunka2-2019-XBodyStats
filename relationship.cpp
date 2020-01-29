@@ -1,6 +1,6 @@
 #include "relationship.h"
 
-Relationship::Relationship(std::vector<ModelData*>& _data):Algorithm (_data){
+Relationship::Relationship(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data, params){
     for(int i = 0; i < 11; i++){
         for(int j = 0; j < 11; j++){
             this->muscrerelation[i][j] = 0;
@@ -9,7 +9,6 @@ Relationship::Relationship(std::vector<ModelData*>& _data):Algorithm (_data){
 }
 
 std::string Relationship::run(){
-    std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
     for(auto dat: data){
         for(auto sec1: dat->seconds){
             for(auto musc1: sec1->muscles){
@@ -45,8 +44,7 @@ std::string Relationship::run(){
             this->muscrerelation[i][j] /= 2;
         }
     }
-    std::string toreturn="Az altalunk felmert edzesek alapjan ezen izomcsoportok intenzitasat modositjak egyszerre:\n";
-    //std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
+    std::string toreturn= "\n\n\n-----------------\nOutput of Relationship:\n\nAz altalunk felmert edzesek alapjan ezen izomcsoportok intenzitasat modositjak egyszerre:\n\n";
     int sum;
     for(int i = 0; i < 11; i++){
         sum = 0;
@@ -58,8 +56,8 @@ std::string Relationship::run(){
         for(int j = i; j < 11; j++){
             if(i != j && sum > 5){
                 if(muscrerelation[i][j] >= sum / 6){
-                    std::string afdasfasf= izomcsoport[i] + " - " + izomcsoport[j];
-                    toreturn += izomcsoport[i] + " - " + izomcsoport[j] + '\n';
+                    std::string afdasfasf= izomcsoport[i] + izomcsoport[j];
+                    toreturn += this->format(izomcsoport[i],4) + izomcsoport[j] + '\n';
                 }
             }
         }

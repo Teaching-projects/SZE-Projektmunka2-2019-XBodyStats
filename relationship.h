@@ -7,7 +7,7 @@
 class Relationship : public Algorithm
 {
 public:
-    Relationship(std::vector<ModelData*>& _data);
+    Relationship(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     int muscrerelation[11][11];
     ~Relationship();

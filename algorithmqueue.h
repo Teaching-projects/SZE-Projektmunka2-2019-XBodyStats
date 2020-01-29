@@ -11,6 +11,7 @@
 #include "voltagerate.h"
 #include "masterallrate.h"
 #include "masterrate.h"
+#include "relationship.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ public:
         algorithms.push_back(new VoltageRate(testData, params));
         algorithms.push_back(new MasterAllRate(testData, params));
         algorithms.push_back(new MasterRate(testData, params));
+        algorithms.push_back(new Relationship(testData, params));
     }
     ~AlgorithmQueue(){
         for(auto& x: algorithms){

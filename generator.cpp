@@ -113,7 +113,7 @@ vector<ModelData*> Generator::generateModels()
         //cout << "--------------------------------\n";
         for(int j = 120; j < config.seconds; j += 30){
 
-            if (j % 10) {
+            if (j % 30) {
                 ExerciseSecond* m = new ExerciseSecond;
                 m->time = j;
                 m->master = new MasterButtonModel;

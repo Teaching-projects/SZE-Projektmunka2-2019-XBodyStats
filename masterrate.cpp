@@ -56,7 +56,7 @@ std::string MasterRate::run(){
         }
     }
     if(false == talalt){
-        return "Nincs osszefugges az adott kategoria es master gomb hasznalata kozott.";
+        return "\n\n\n-----------------\nOutput of MasterRate:\nNincs osszefugges az adott kategoria es master gomb hasznalata kozott.";
     }else{
         std::string toreturn = "Az általunk talalt osszefugges(ek) az adott kategoria es a master gomb hasznalatanak merteke kozott:\n";
         for (int i = 0; i < 20; i++) {
