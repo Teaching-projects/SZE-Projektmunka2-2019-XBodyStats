@@ -17,18 +17,18 @@ std::string MasterRate::run(){
         if((d->user.sex == sex) && (d->user.age <= maxage) && (d->user.age >= minage) && (bmi <= maxbmi) && (bmi >= minbmi)){
             for(int i = 1; i < d->seconds.size(); i++){
                 if(d->seconds[i]->master != nullptr){
-                    double korabbi = 0.0;
+                    /*double korabbi = 0.0;
                     for(int j = i-1; j >= 0; j--){
                         if(d->seconds[j]->master != nullptr){
                             korabbi = d->seconds[j]->master->percent;
                             break;
                         }
-                    }
+                    }*/
                     auto minute = (int)(d->seconds[i]->time / 60);
                     mins[0][(int)(d->seconds[i]->time / 60)]++;
                     auto minsa = mins[0][minute];
-                    auto asdas =  d->seconds[i]->master->percent - korabbi;
-                    mins[1][(int)(d->seconds[i]->time / 60)] += d->seconds[i]->master->percent - korabbi;
+                    auto asdas =  d->seconds[i]->master->percent;
+                    mins[1][(int)(d->seconds[i]->time / 60)] += d->seconds[i]->master->percent;
                 }
             }
         }
@@ -39,7 +39,10 @@ std::string MasterRate::run(){
         if(mins[0][i] > 0){
             int safsdfa = mins[1][i];
             mins[1][i] = mins[1][i] / (double)mins[0][i];
-            auto percossz = mins[0][i];
+            /*if(i > 0){
+                mins[1][i] = mins[1][i] - mins[1][i-1];
+            }*/
+            int percossz = mins[0][i];
             sum += mins[0][i];
         }
     }
@@ -59,8 +62,8 @@ std::string MasterRate::run(){
         for (int i = 0; i < 20; i++) {
             if(mins[2][i] == 1){
                 auto asdminuszegy = mins[1][i-1];
-                auto asd = mins[1][i];
-                toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i]) + "\n";
+                auto asd = mins[1][i] - asdminuszegy;
+                toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i] - mins[1][i-1]) + "%\n";
             }
         }
         std::string s =  "\n\n\n-----------------\nOutput of MasterRate:\n" + toreturn;
