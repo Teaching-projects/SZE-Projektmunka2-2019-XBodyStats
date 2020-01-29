@@ -6,7 +6,7 @@
 class SelectRate:public Algorithm
 {
 public:
-    SelectRate(std::vector<ModelData*>& _data);
+    SelectRate(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     ~SelectRate();
 };

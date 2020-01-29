@@ -7,7 +7,7 @@
 class MasterRate: public Algorithm
 { //van e olyan idopillanat ahol surubben hasznaljuk a mastert
 public:
-    MasterRate(std::vector<ModelData*>& _data);
+    MasterRate(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     ~MasterRate();
 private:

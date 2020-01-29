@@ -12,6 +12,19 @@ Generator::Generator()
     config.seconds = 1200;
     config.relationship = vector<Muscle>();
     srand(time(nullptr));
+
+    this->muscleMultiplier[0] = 1.0;
+    this->muscleMultiplier[1] = 0.9;
+    this->muscleMultiplier[2] = 0.9;
+    this->muscleMultiplier[3] = 0.67;
+    this->muscleMultiplier[4] = 0.55;
+    this->muscleMultiplier[5] = 0.74;
+    this->muscleMultiplier[6] = 0.81;
+    this->muscleMultiplier[7] = 0.83;
+    this->muscleMultiplier[8] = 0.62;
+    this->muscleMultiplier[9] = 0.81;
+    this->muscleMultiplier[10] = 0.5;
+
 }
 
 int randomNumber(int chance, int lowThreshold = -999, int offset = 0){
@@ -50,7 +63,7 @@ ExerciseSecond* Generator::beginning(double bmi, int age, bool sex){
         Muscle m = static_cast<Muscle>(i);
 
         int muscleMax = (int)max - randomNumber(10);
-        muscleStart[m] = muscleMax;
+        muscleStart[m] = muscleMax * this->muscleMultiplier[m];
         MuscleModel* muscle = new MuscleModel;
         muscle->muscle = m;
         muscle->percent = muscleStart[m];
@@ -111,10 +124,34 @@ vector<ModelData*> Generator::generateModels()
                 asd->percent = 0;
                 asd->isSelected = false;
                 asd->chagedWith = nullptr;
-                filler.push_back(asd);
+                filler.insert(filler.begin()+asd->muscle, asd);
                 m->muscles.insert(m->muscles.end(),filler.begin(),filler.end());
                 data->seconds.push_back(m);
                 db++;
+            }
+
+            if(j % 2){
+                ExerciseSecond* m = new ExerciseSecond;
+                m->time = j;
+                m->master = nullptr;
+                auto filler = this->filler(Calves);
+                filler.pop_back();
+                MuscleModel* asd = new MuscleModel;
+                asd->muscle = Quadriceps;
+                asd->percent = lastPercents[Quadriceps] + 1;
+                lastPercents[Quadriceps] = asd->percent;
+                asd->isSelected = true;
+                asd->chagedWith = new Event(Button);
+                filler.insert(filler.begin()+asd->muscle, asd);
+                MuscleModel* asd2 = new MuscleModel;
+                asd2->muscle = Hamstring;
+                asd2->percent = lastPercents[Hamstring];
+                lastPercents[Hamstring] = asd2->percent;
+                asd2->isSelected = true;
+                asd2->chagedWith = new Event(Button);
+                filler.insert(filler.begin()+asd->muscle, asd2);
+                m->muscles.insert(m->muscles.end(),filler.begin(),filler.end());
+                data->seconds.push_back(m);
             }
 
             useButton = (randomNumber(100) <= 20) ? false : true;

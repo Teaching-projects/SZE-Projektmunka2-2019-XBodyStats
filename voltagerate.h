@@ -7,7 +7,7 @@
 class VoltageRate:public Algorithm
 {
 public:
-    VoltageRate(std::vector<ModelData*>& _data);
+    VoltageRate(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     ~VoltageRate();
 private:

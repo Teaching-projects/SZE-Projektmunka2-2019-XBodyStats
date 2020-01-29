@@ -1,7 +1,7 @@
 #include "startvoltage.h"
 #include <iostream>
 
-StartVoltage::StartVoltage(std::vector<ModelData*>& _data):Algorithm (_data){}
+StartVoltage::StartVoltage(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data,params){}
 
 std::string StartVoltage::run(){
     //int sum = 0;
@@ -22,10 +22,11 @@ std::string StartVoltage::run(){
             }
         }
     }
-    std::string toreturn = "Ebben a kategoriaban az izomcsoportok atlagos feszultsegszintje: \n";
+    std::string toreturn = "\n\n\n-----------------\nOutput of StartVoltage:\nEbben a kategoriaban az izomcsoportok atlagos kezdo feszultsegszintje: \n";
     for (int i = 0; i < 11; i++) {
         avrg[i] = sum[i] / db;
-        toreturn += std::to_string(i) + '\t' + std::to_string(avrg[i]) + '\n';
+        Muscle m = (Muscle)i;
+        toreturn += std::to_string(m) + '\t' + std::to_string(avrg[i]) + '\n';
     }
     return toreturn;
 }

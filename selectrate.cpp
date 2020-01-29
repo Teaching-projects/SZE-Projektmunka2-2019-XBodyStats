@@ -1,6 +1,6 @@
 #include "selectrate.h"
 
-SelectRate::SelectRate(std::vector<ModelData*>& _data):Algorithm (_data){}
+SelectRate::SelectRate(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data,params){}
 
 std::string SelectRate::run(){
     int selectdb;
@@ -21,7 +21,7 @@ std::string SelectRate::run(){
         }
     }
     //std::string s =  "Az edzesek soran a valtoztatasok " + std::to_string(selectuse/osszdb) + "%-a tortent select gombbal(" + std::to_string(selectuse) + " db)";
-    return "Az edzesek soran a valtoztatasok " + std::to_string(selectuse/osszdb) + "%-a tortent select gombbal(" + std::to_string(selectuse) + " db)";
+    return "\n\n\n-----------------\nOutput of SelectRate:\nAz edzesek soran a valtoztatasok " + std::to_string((selectuse/(double)osszdb) * 100.0) + "%-a tortent select gombbal(" + std::to_string(selectuse) + " db)";
 }
 
 SelectRate::~SelectRate(){

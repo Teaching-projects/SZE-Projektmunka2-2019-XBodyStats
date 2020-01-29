@@ -1,7 +1,7 @@
 #include "masterrate.h"
 #include <iostream>
 
-MasterRate::MasterRate(std::vector<ModelData*>& _data):Algorithm (_data){
+MasterRate::MasterRate(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data,params){
     for(int i = 0; i < 2; i++){
         for(int j = 0; j < 20; j++){
             mins[i][j] = 0;
@@ -63,8 +63,8 @@ std::string MasterRate::run(){
                 toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i]) + "\n";
             }
         }
-        std::string s =  toreturn;
-        std::cout << s;
+        std::string s =  "\n\n\n-----------------\nOutput of MasterRate:\n" + toreturn;
+        //std::cout << s;
         return s;
     }
 }

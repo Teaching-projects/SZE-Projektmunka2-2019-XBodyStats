@@ -7,7 +7,7 @@
 class StartEndDifferent:public Algorithm
 {
 public:
-    StartEndDifferent(std::vector<ModelData*>& _data);
+    StartEndDifferent(std::vector<ModelData*>& _data, AlgorithmParams* params);
     std::string run();
     ~StartEndDifferent();
    // Muscle muscle;

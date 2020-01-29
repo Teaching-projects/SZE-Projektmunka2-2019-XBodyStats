@@ -1,6 +1,6 @@
 #include "slideorbutton.h"
 
-SlideOrButton::SlideOrButton(std::vector<ModelData*>& _data):Algorithm (_data){}
+SlideOrButton::SlideOrButton(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data,params){}
 
 std::string SlideOrButton::run(){
     int sliderpercent = 0;
@@ -21,7 +21,7 @@ std::string SlideOrButton::run(){
     }
     double sum = buttonpercent+sliderpercent;
     std::string s =  "A valtoztatasok " + std::to_string(double((buttonpercent/sum)*100.0)) + "%-a tortent gombbal, mig " + std::to_string(double((sliderpercent/sum)*100.0)) + "%-a csuszkaval.";
-    return "A valtoztatasok " + std::to_string(int((buttonpercent/sum)*100)) + "%-a tortent gombbal, mig " + std::to_string(int((sliderpercent/sum)*100)) + "%-a csuszkaval.";
+    return "\n\n\n-----------------\nOutput of SlideOrButton:\nA valtoztatasok " + std::to_string(int((buttonpercent/sum)*100)) + "%-a tortent gombbal, mig " + std::to_string(int((sliderpercent/sum)*100)) + "%-a csuszkaval.";
 }
 
 SlideOrButton::~SlideOrButton(){

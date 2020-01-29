@@ -1,6 +1,6 @@
 #include "voltagerate.h"
 
-VoltageRate::VoltageRate(std::vector<ModelData*>& _data):Algorithm (_data){
+VoltageRate::VoltageRate(std::vector<ModelData*>& _data, AlgorithmParams* params):Algorithm (_data,params){
     for(int i = 0; i < 2; i++){
         for(int j = 0; j < 20; j++){
             mins[i][j] = 0;
@@ -57,9 +57,9 @@ std::string VoltageRate::run(){
                 toreturn += std::to_string(i) + ". perc\t" + std::to_string(mins[1][i]) + "%\n";
             }
         }
-        std::string s = toreturn;
-        std::cout << toreturn;
-        return toreturn;
+        std::string s = "\n\n\n-----------------\nOutput of VoltageRate:\n" + toreturn;
+        //std::cout << toreturn;
+        return s;
     }
 }
 
