@@ -27,7 +27,7 @@ std::string StartVoltage::run(){
     std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
     for (int i = 0; i < 11; i++) {
         avrg[i] = sum[i] / db;
-        toreturn += izomcsoport[i] + '\t' + std::to_string(avrg[i]) + '\n';
+        toreturn += this->format(izomcsoport[i],4) + '\t' + std::to_string(avrg[i]) + "%\n";
 
     }
     return toreturn;

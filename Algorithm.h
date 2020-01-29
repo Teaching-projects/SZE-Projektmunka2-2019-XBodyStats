@@ -50,6 +50,18 @@ public:
     //virtual void cleanUp() =0;
     //body is always this->content = this->run();
 
+    std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
+
+    std::string format(std::string name, int distance){
+       int max = 10;
+       int spacerNumber = max - name.length() + distance;
+       std::string toReturn = name;
+       for(int i=0;i<spacerNumber;i++){
+           toReturn += " ";
+       }
+       return toReturn;
+    }
+
     virtual ~Algorithm(){
     }
 };

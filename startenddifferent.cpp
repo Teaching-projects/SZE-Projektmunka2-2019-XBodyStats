@@ -32,15 +32,10 @@ std::string StartEndDifferent::run(){
             }
         }
     }
-<<<<<<< HEAD
     std::string toreturn = "\n\n\n-----------------\nOutput of StartEndDifferent:\nEbben a kategoriaban az izomcsoportok atlagos zaro feszultsegszintje: \n";
-=======
-    std::string toreturn = "Ebben a kategoriaban az izomcsoportok atlagos zaro feszultsegszintje: \n";
-    std::string izomcsoport[11]={"Quadriceps", "Hamstring", "Glutes", "Abs", "LowerBack", "Back", "Trapezius", "Pectoral", "Arms", "Shoulders", "Calves"};
->>>>>>> 052a6d3146bd7c204f30214e65ffe53645360e98
     for(int i = 0; i < 11; i++){
         avrg[i] = sum[i]/ db;
-        toreturn += izomcsoport[i] + '\t' + std::to_string(avrg[i]) + '\n';
+        toreturn += this->format(izomcsoport[i],4) + '\t' + std::to_string(avrg[i]) + "%\n";
     }
     //std::cout << toreturn;
     return toreturn;
