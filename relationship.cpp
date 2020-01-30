@@ -67,7 +67,7 @@ std::string Relationship::run(){
                 if(muscrerelation[i][j] >= sum / 6){
 
                     //ss << (izomcsoport[i] + izomcsoport[j]);
-                    ss << (this->format(izomcsoport[i],4) + izomcsoport[j])w << " " << std::setprecision(4) << (sum/(double)osszes[i])*100.0 << "%" <<  '\n';
+                    ss << (this->format(izomcsoport[i],4) + izomcsoport[j]) << " " << std::setprecision(4) << (sum/(double)osszes[i])*100.0 << "%" <<  '\n';
                 }
             }
         }
