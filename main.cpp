@@ -42,8 +42,8 @@ void closing(Model* model, DataMining* dataMining){
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow window;
-    window.show();
+    //MainWindow window;
+    //window.show();
     AlgorithmParams* params = new AlgorithmParams;
     if(argc >=5){
         params->minage = atoi(argv[1]);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     delete queue;
 
     FileHandler::getInstance().writeToFile();
-
+    exit(0);
 /*
     Algorithm* s = new StartVoltage(test);
     //delete s;
@@ -85,8 +85,8 @@ int main(int argc, char *argv[])
 */
 
 
-    ExerciseViewController* viewController= new ExerciseViewController(&window);
-    window.delegate = viewController;
+    //ExerciseViewController* viewController= new ExerciseViewController(&window);
+    //window.delegate = viewController;
 
     //Model* model = new Model();
     //DataMining* dataMining = new DataMining(model->getData());
